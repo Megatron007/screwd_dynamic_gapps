@@ -1,5 +1,5 @@
-#BaNkS Dynamic GApps#
-#by BaNkS#
+#PureNexus Dynamic Gapps#
+#Based off Banks Gapps#
 
 **HOW TO USE:**
 
@@ -17,6 +17,7 @@
 
 **CREDITS:**
 
+* Banks
 * Google
 * CyanogenMod
 * TKruzze

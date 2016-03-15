@@ -1,6 +1,7 @@
-ui_print("***************************");
-ui_print(" BaNkS Dynamic GApps 6.x.x ");
-ui_print("***************************");
+ui_print("*****************************");
+ui_print("** PureNexus Dynamic GApps **");
+ui_print("*****************************");
+ui_print("Based off: Banks Gapps");
 show_progress(1, 15);
 ifelse(is_mounted("/system"), unmount("/system"));
 ifelse(is_mounted("/data"), unmount("/data"));

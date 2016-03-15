@@ -13,40 +13,23 @@
 #    GNU General Public License for more details.
 
 # Pretty ascii art
-echo "._______.._______..__...._..___..._.._______................";
-echo "|.._....||..._...||..|..|.||...|.|.||.......|...............";
-echo "|.|_|...||..|_|..||...|_|.||...|_|.||.._____|...............";
-echo "|.......||.......||.......||......_||.|_____................";
-echo "|.._...|.|.......||.._....||.....|_.|_____..|...............";
-echo "|.|_|...||..._...||.|.|...||...._..|._____|.|...............";
-echo "|_______||__|.|__||_|..|__||___|.|_||_______|...............";
-echo ".______...__...__..__...._.._______..__...__..___..._______.";
-echo "|......|.|..|.|..||..|..|.||..._...||..|_|..||...|.|.......|";
-echo "|.._....||..|_|..||...|_|.||..|_|..||.......||...|.|.......|";
-echo "|.|.|...||.......||.......||.......||.......||...|.|.......|";
-echo "|.|_|...||_....._||.._....||.......||.......||...|.|......_|";
-echo "|.......|..|...|..|.|.|...||..._...||.||_||.||...|.|.....|_.";
-echo "|______|...|___|..|_|..|__||__|.|__||_|...|_||___|.|_______|";
-echo "._______.._______.._______.._______.._______................";
-echo "|.......||..._...||.......||.......||.......|...............";
-echo "|....___||..|_|..||...._..||...._..||.._____|...............";
-echo "|...|.__.|.......||...|_|.||...|_|.||.|_____................";
-echo "|...||..||.......||....___||....___||_____..|...............";
-echo "|...|_|.||..._...||...|....|...|....._____|.|...............";
-echo "|_______||__|.|__||___|....|___|....|_______|...............";
+echo ".+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+";
+echo ".|P|.|u|.|r|.|e|.|N|.|e|.|x|.|u|.|s|";
+echo ".+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+";
+echo ".|D|.|y|.|n|.|a|.|m|.|i|.|c|........";
+echo ".+-+.+-+.+-+.+-+.+-+.+-+.+-+........";
+echo ".|G|.|A|.|p|.|p|.|s|................";
+echo ".+-+.+-+.+-+.+-+.+-+................";
 
 # Define paths && variables
 APP_DIRS="dynamic/FaceLock/arm/app/FaceLock dynamic/FaceLock/arm64/app/FaceLock dynamic/PrebuiltGmsCore/arm/priv-app/PrebuiltGmsCore dynamic/PrebuiltGmsCore/arm64/priv-app/PrebuiltGmsCore dynamic/SetupWizard/phone/priv-app/SetupWizard dynamic/SetupWizard/tablet/priv-app/SetupWizard dynamic/Velvet/arm/priv-app/Velvet dynamic/Velvet/arm64/priv-app/Velvet system/app/ChromeBookmarksSyncAdapter system/app/GoogleCalendarSyncAdapter system/app/GoogleContactsSyncAdapter system/app/GoogleTTS system/priv-app/GoogleBackupTransport system/priv-app/GoogleFeedback system/priv-app/GoogleLoginService system/priv-app/GoogleOneTimeInitializer system/priv-app/GooglePartnerSetup system/priv-app/GoogleServicesFramework system/priv-app/HotwordEnrollment system/priv-app/Phonesky"
 TOOLSDIR=$(realpath .)/tools
 GAPPSDIR=$(realpath .)/files
 FINALDIR=$(realpath .)/out
-ZIPNAME1TITLE=BaNkS_Dynamic_GApps
-ZIPNAME1VERSION=6.x.x
-ZIPNAME1DATE=$(date +%-m-%-e-%-y)_$(date +%H:%M)
-ZIPNAME2TITLE=BANKS_GAPPS
-ZIPNAME2VERSION=6.XX
-ZIPNAME1="$ZIPNAME1TITLE"_"$ZIPNAME1VERSION"_"$ZIPNAME1DATE".zip
-ZIPNAME2="$ZIPNAME2TITLE"_"$ZIPNAME2VERSION".zip
+ZIPNAMETITLE=PureNexus_Dynamic_GApps
+ZIPNAMEVERSION=6.x.x
+ZIPNAMEDATE=$(date +%-m-%-e-%-y)
+ZIPNAME="$ZIPNAMETITLE"_"$ZIPNAMEVERSION"_"$ZIPNAMEDATE".zip
 
 dcapk() {
 export PATH=$TOOLSDIR:$PATH
@@ -71,12 +54,11 @@ for dirs in $APP_DIRS; do
   dcapk 1> /dev/null 2>&1;
 done
 cd "$GAPPSDIR"
-zip -q -r -9 "$ZIPNAME1" ./*
-mv -f "$ZIPNAME1" "$TOOLSDIR"
+zip -q -r -9 "$ZIPNAME" ./*
+mv -f "$ZIPNAME" "$TOOLSDIR"
 cd "$TOOLSDIR"
-java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME1" "$ZIPNAME1"
-mv -f "$ZIPNAME1" "$FINALDIR"
-cp -f "$FINALDIR"/"$ZIPNAME1" "$FINALDIR"/"$ZIPNAME2"
+java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME" "$ZIPNAME"
+mv -f "$ZIPNAME" "$FINALDIR"
 
 # Define ending time
 END=$(date +%s)
@@ -84,4 +66,4 @@ END=$(date +%s)
 echo " "
 echo "All done creating GApps!"
 echo "Total time elapsed: $(echo $(($END-$BEGIN)) | awk '{print int($1/60)"mins "int($1%60)"secs "}') ($(echo "$END - $BEGIN" | bc) seconds)"
-echo "Completed GApp zips are located in the '$FINALDIR' directory"
+echo "Completed GApps zip located in the '$FINALDIR' directory"
