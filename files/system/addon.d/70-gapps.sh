@@ -33,11 +33,19 @@ fi
 
 list_files() {
 cat <<EOF
+  app/CalendarGooglePrebuilt/CalendarGooglePrebuilt.apk
+  app/Chrome/Chrome.apk
   app/ChromeBookmarksSyncAdapter/ChromeBookmarksSyncAdapter.apk
   app/FaceLock/FaceLock.apk
   app/GoogleCalendarSyncAdapter/GoogleCalendarSyncAdapter.apk
+  app/GoogleCamera/GoogleCamera.apk
   app/GoogleContactsSyncAdapter/GoogleContactsSyncAdapter.apk
   app/GoogleTTS/GoogleTTS.apk
+  app/Hangouts/Hangouts.apk
+  app/Photos/Photos.apk
+  app/PrebuiltBugle/PrebuiltBugle.apk
+  app/PrebuiltDeskClockGoogle/PrebuiltDeskClockGoogle.apk
+  app/talkback/talkback.apk
   etc/permissions/com.google.android.camera.experimental2015.xml
   etc/permissions/com.google.android.maps.xml
   etc/permissions/com.google.android.media.effects.xml
