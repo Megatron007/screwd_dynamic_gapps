@@ -70,9 +70,9 @@ set_metadata_recursive() {
 }
 
 # Start installation
-ui_print "*************************"
-ui_print "BaNkS Dynamic GApps 6.x.x"
-ui_print "*************************"
+ui_print "*****************************"
+ui_print "** PureNexus Dynamic GApps **"
+ui_print "*****************************"
 
 if is_mounted /system; then umount /system; fi
 if is_mounted /data; then umount /data; fi
@@ -115,8 +115,6 @@ set_metadata_recursive "/system/lib" uid 0 gid 0 dmode 0755 fmode 0755 capabilit
 set_metadata_recursive "/system/lib64" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 set_metadata_recursive "/system/priv-app" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 set_metadata_recursive "/system/usr/srec" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
-set_metadata_recursive "/system/vendor/lib" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
-set_metadata_recursive "/system/vendor/lib64" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 set_metadata_recursive "/system/vendor/pittpatt" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 
 ui_print "Unmounting /system and /data..."
