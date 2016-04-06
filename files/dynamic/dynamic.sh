@@ -33,7 +33,6 @@ if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
   cp -rf $tmp_path/FaceLock/vendor/* /system/vendor
 elif (echo "$device_architecture" | grep -qi "arm64"); then
   cp -rf $tmp_path/FaceLock/arm64/* /system
-  cp -rf $tmp_path/FaceLock/vendor/* /system/vendor
 fi
 
 # Libs

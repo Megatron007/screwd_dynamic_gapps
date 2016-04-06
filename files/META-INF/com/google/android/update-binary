@@ -45,6 +45,13 @@ rom_build_prop=/system/build.prop
 rom_version_required=6.0
 rom_version_installed="$(file_getprop $rom_build_prop "ro.build.version.release")"
 
+device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
+
+# If the recommended field is empty, fall back to the deprecated one
+if [ -z "$device_architecture" ]; then
+  device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abi=")"
+fi
+
 set_metadata_recursive() {
   dir="$1";
   shift;
@@ -101,8 +108,12 @@ set_perm 0 0 0777 /data/dynamic/dynamic.sh
 /data/dynamic/dynamic.sh
 
 ui_print "Setting permissions..."
-# Change pittpatt folders to root:shell per Google Factory Settings
+
+# Change pittpatt folders to root:shell per Google Factory Settings if not arm64
+if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
 find "/system/vendor/pittpatt" -type d -exec chown 0.2000 '{}' \;
+fi
+
 # Set metadata
 set_metadata_recursive "/system/addon.d" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 set_metadata_recursive "/system/app" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
@@ -115,7 +126,11 @@ set_metadata_recursive "/system/lib" uid 0 gid 0 dmode 0755 fmode 0755 capabilit
 set_metadata_recursive "/system/lib64" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 set_metadata_recursive "/system/priv-app" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 set_metadata_recursive "/system/usr/srec" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
+
+# Set metadata on pittpatt if not arm64
+if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
 set_metadata_recursive "/system/vendor/pittpatt" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
+fi
 
 ui_print "Unmounting /system and /data..."
 umount /system
