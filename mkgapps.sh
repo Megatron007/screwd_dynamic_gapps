@@ -24,20 +24,16 @@ echo ".+-+.+-+.+-+.+-+.+-+................";
 # Define paths && variables
 APPDIRS="dynamic/FaceLock/arm/app/FaceLock
          dynamic/FaceLock/arm64/app/FaceLock
-         dynamic/GoogleTTS/arm/app/GoogleTTS
-         dynamic/GoogleTTS/x86/app/GoogleTTS
          dynamic/PrebuiltGmsCore/arm/priv-app/PrebuiltGmsCore
          dynamic/PrebuiltGmsCore/arm64/priv-app/PrebuiltGmsCore
-         dynamic/PrebuiltGmsCore/x86/priv-app/PrebuiltGmsCore
-         dynamic/PrebuiltGmsCore/x86_64/priv-app/PrebuiltGmsCore
          dynamic/SetupWizard/phone/priv-app/SetupWizard
          dynamic/SetupWizard/tablet/priv-app/SetupWizard
          dynamic/Velvet/arm/priv-app/Velvet
          dynamic/Velvet/arm64/priv-app/Velvet
-         dynamic/Velvet/x86/priv-app/Velvet
          system/app/ChromeBookmarksSyncAdapter
          system/app/GoogleCalendarSyncAdapter
          system/app/GoogleContactsSyncAdapter
+         system/app/GoogleTTS
          system/priv-app/GoogleBackupTransport
          system/priv-app/GoogleFeedback
          system/priv-app/GoogleLoginService
