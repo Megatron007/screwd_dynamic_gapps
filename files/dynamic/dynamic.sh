@@ -51,9 +51,9 @@ fi
 
 # Libs
 if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
-  cp -rf $tmp_path/Libs/system/lib/* /system/lib
+  cp -rf $tmp_path/Libs/lib/* /system/lib
 elif (echo "$device_architecture" | grep -qi "arm64"); then
-  cp -rf $tmp_path/Libs/system/lib64/* /system/lib64
+  cp -rf $tmp_path/Libs/lib64/* /system/lib64
 fi
 
 # PrebuiltBugle
