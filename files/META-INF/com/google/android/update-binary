@@ -3,6 +3,7 @@
 
 # This file contains parts from the scripts taken from the TK GApps Project by TKruzze and osmOsis.
 # This file contains parts from the scripts taken from the Open GApps Project by mfonville.
+# This file contains parts from the update-binary taken from the SuperSU installation zip.
 #
 # This script is free software: you can redistribute it and/or modify
 # it under the terms of the GNU General Public License as published by
@@ -22,15 +23,6 @@ ui_print() {
   echo -n -e "ui_print\n" >> $outfd
 }
 
-is_mounted() {
-  if [ ! -z "$2" ]; then
-    cat /proc/mounts | grep $1 | grep $2, >/dev/null
-  else
-    cat /proc/mounts | grep $1 >/dev/null
-  fi
-  return $?
-}
-
 zipfile=$3
 
 set_perm() {
@@ -38,19 +30,10 @@ set_perm() {
   chmod "$3" "$4"
 }
 
-file_getprop() { grep "^$2" "$1" | cut -d= -f2; }
-
-rom_build_prop=/system/build.prop
-
 rom_version_required=6.0
-rom_version_installed="$(file_getprop $rom_build_prop "ro.build.version.release")"
+rom_version_installed=$(cat /system/build.prop | grep -m 1 "ro.build.version.release=")
 
-device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abilist=")"
-
-# If the recommended field is empty, fall back to the deprecated one
-if [ -z "$device_architecture" ]; then
-  device_architecture="$(file_getprop $rom_build_prop "ro.product.cpu.abi=")"
-fi
+arch=$(cat /system/build.prop | grep -m 1 "ro.product.cpu.abi=")
 
 set_metadata_recursive() {
   dir="$1";
@@ -81,12 +64,8 @@ ui_print "*****************************"
 ui_print "** PureNexus Dynamic GApps **"
 ui_print "*****************************"
 
-if is_mounted /system; then umount /system; fi
-if is_mounted /data; then umount /data; fi
-
-ui_print "Mounting /system and /data..."
+ui_print "Mounting /system..."
 mount /system
-mount /data
 
 ui_print "Checking for correct Android version..."
 # Prevent installation of incorrect gapps version
@@ -95,7 +74,6 @@ if [ -z "${rom_version_installed##*$rom_version_required*}" ]; then
 else
   ui_print "ROM and GApps versions don't match...aborting"
   umount /system
-  umount /data
   exit 1
 fi
 
@@ -104,14 +82,14 @@ rm -rf "/system/app/BrowserProviderProxy" "/system/app/PartnerBookmarksProvider"
 
 ui_print "Installing Dynamic GApps..."
 unzip -o "$zipfile" "system/*" -d /
-unzip -o "$zipfile" "dynamic/*" -d /data
-set_perm 0 0 0777 /data/dynamic/dynamic.sh
-/data/dynamic/dynamic.sh
+unzip -o "$zipfile" "dynamic/*" -d /tmp
+set_perm 0 0 0777 /tmp/dynamic/dynamic.sh
+/tmp/dynamic/dynamic.sh
 
 ui_print "Setting permissions..."
 
 # Change pittpatt folders to root:shell per Google Factory Settings if not arm64
-if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
+if (echo "$arch" | grep -qi "armeabi"); then
 find "/system/vendor/pittpatt" -type d -exec chown 0.2000 '{}' \;
 fi
 
@@ -129,12 +107,11 @@ set_metadata_recursive "/system/priv-app" uid 0 gid 0 dmode 0755 fmode 0755 capa
 set_metadata_recursive "/system/usr/srec" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 
 # Set metadata on pittpatt if not arm64
-if (echo "$device_architecture" | grep -i "armeabi" | grep -qiv "arm64"); then
+if (echo "$arch" | grep -qi "armeabi"); then
 set_metadata_recursive "/system/vendor/pittpatt" uid 0 gid 0 dmode 0755 fmode 0755 capabilities 0x0 selabel u:object_r:system_file:s0
 fi
 
-ui_print "Unmounting /system and /data..."
+ui_print "Unmounting /system..."
 umount /system
-umount /data
 
 ui_print "Installation complete!"
