@@ -86,7 +86,7 @@ cd "$GAPPSDIR"
 zip -q -r -9 "$ZIPNAME" ./*
 mv -f "$ZIPNAME" "$TOOLSDIR"
 cd "$TOOLSDIR"
-java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME" "$ZIPNAME"
+./inc.signapk.sh -q sign "$ZIPNAME" "$ZIPNAME"
 mv -f "$ZIPNAME" "$FINALDIR"
 
 # Define ending time
