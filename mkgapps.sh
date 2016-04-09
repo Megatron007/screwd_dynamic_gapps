@@ -86,7 +86,7 @@ cd "$GAPPSDIR"
 zip -q -r -9 "$ZIPNAME" ./*
 mv -f "$ZIPNAME" "$TOOLSDIR"
 cd "$TOOLSDIR"
-./inc.signapk.sh -q sign "$ZIPNAME" "$ZIPNAME"
+./signapk.sh -q sign "$ZIPNAME"
 mv -f "$ZIPNAME" "$FINALDIR"
 
 # Define ending time
