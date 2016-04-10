@@ -64,6 +64,9 @@ ui_print "*****************************"
 ui_print "** PureNexus Dynamic GApps **"
 ui_print "*****************************"
 
+ui_print "Setting recovery to SELinux permissive..."
+setenforce 0
+
 ui_print "Mounting /system..."
 mount /system
 
