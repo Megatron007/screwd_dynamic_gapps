@@ -61,7 +61,6 @@ ZIPNAMEDATE=$(date +%-m-%-e-%-y)
 ZIPNAME="$ZIPNAMETITLE"_"$ZIPNAMEVERSION"_"$ZIPNAMEDATE".zip
 
 dcapk() {
-export PATH=$TOOLSDIR:$PATH
 TARGETDIR=$(realpath .)
 TARGETAPK=$TARGETDIR/$(basename "$TARGETDIR").apk
   unzip -q -o "$TARGETAPK" -d "$TARGETDIR" "lib/*"
@@ -78,15 +77,23 @@ TARGETAPK=$TARGETDIR/$(basename "$TARGETDIR").apk
 BEGIN=$(date +%s)
 
 # Begin the magic
+export PATH=$TOOLSDIR:$PATH
+
 for dirs in $APPDIRS; do
   cd "$GAPPSDIR/${dirs}";
   dcapk 1> /dev/null 2>&1;
 done
+
 cd "$GAPPSDIR"
-zip -q -r -9 "$ZIPNAME" ./*
+7za a -tzip -r "$ZIPNAME" ./* > /dev/null
 mv -f "$ZIPNAME" "$TOOLSDIR"
 cd "$TOOLSDIR"
-./signapk.sh -q sign "$ZIPNAME"
+java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME" "$ZIPNAME".signed
+rm -f "$ZIPNAME"
+zipadjust "$ZIPNAME".signed "$ZIPNAME".fixed > /dev/null
+rm -f "$ZIPNAME".signed
+java -Xmx2048m -jar minsignapk.jar testkey.x509.pem testkey.pk8 "$ZIPNAME".fixed "$ZIPNAME"
+rm -f "$ZIPNAME".fixed
 mv -f "$ZIPNAME" "$FINALDIR"
 
 # Define ending time
