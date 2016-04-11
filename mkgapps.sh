@@ -85,14 +85,14 @@ for dirs in $APPDIRS; do
 done
 
 cd "$GAPPSDIR"
-7za a -tzip -r "$ZIPNAME" ./* > /dev/null
+7za a -tzip -r "$ZIPNAME" ./* 1> /dev/null 2>&1
 mv -f "$ZIPNAME" "$TOOLSDIR"
 cd "$TOOLSDIR"
-java -Xmx2048m -jar signapk.jar -w testkey.x509.pem testkey.pk8 "$ZIPNAME" "$ZIPNAME".signed
+java -Xmx2048m -jar signapk.jar -w certificate.pem key.pk8 "$ZIPNAME" "$ZIPNAME".signed
 rm -f "$ZIPNAME"
-zipadjust "$ZIPNAME".signed "$ZIPNAME".fixed > /dev/null
+zipadjust "$ZIPNAME".signed "$ZIPNAME".fixed 1> /dev/null 2>&1
 rm -f "$ZIPNAME".signed
-java -Xmx2048m -jar minsignapk.jar testkey.x509.pem testkey.pk8 "$ZIPNAME".fixed "$ZIPNAME"
+java -Xmx2048m -jar minsignapk.jar certificate.pem key.pk8 "$ZIPNAME".fixed "$ZIPNAME"
 rm -f "$ZIPNAME".fixed
 mv -f "$ZIPNAME" "$FINALDIR"
 
