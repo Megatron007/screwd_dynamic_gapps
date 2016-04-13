@@ -23,7 +23,6 @@ echo ".+-+.+-+.+-+.+-+.+-+................";
 
 # Define paths && variables
 APPDIRS="dynamic/FaceLock/arm/app/FaceLock
-         dynamic/FaceLock/arm64/app/FaceLock
          dynamic/GoogleCamera/arm/app/GoogleCamera
          dynamic/GoogleCamera/arm64/app/GoogleCamera
          dynamic/Hangouts/arm/app/Hangouts

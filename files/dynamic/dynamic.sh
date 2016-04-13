@@ -12,7 +12,7 @@ if (echo "$arch" | grep -qi "armeabi"); then
   cp -rf $tmp_path/FaceLock/arm/* /system
   cp -rf $tmp_path/FaceLock/vendor/* /system/vendor
 elif (echo "$arch" | grep -qi "arm64"); then
-  cp -rf $tmp_path/FaceLock/arm64/* /system
+  cp -rf $tmp_path/FaceLock/arm/* /system
 fi
 
 # GoogleCamera
