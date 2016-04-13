@@ -25,6 +25,7 @@ cat <<EOF
   app/PrebuiltDeskClockGoogle/PrebuiltDeskClockGoogle.apk
   app/talkback/talkback.apk
   etc/permissions/com.google.android.camera.experimental2015.xml
+  etc/permissions/com.google.android.camera2.xml
   etc/permissions/com.google.android.dialer.support.xml
   etc/permissions/com.google.android.maps.xml
   etc/permissions/com.google.android.media.effects.xml
@@ -35,6 +36,7 @@ cat <<EOF
   etc/sysconfig/whitelist_com.android.omadm.service.xml
   etc/updatecmds/google_generic_update.txt
   framework/com.google.android.camera.experimental2015.jar
+  framework/com.google.android.camera2.jar
   framework/com.google.android.dialer.support.jar
   framework/com.google.android.maps.jar
   framework/com.google.android.media.effects.jar
