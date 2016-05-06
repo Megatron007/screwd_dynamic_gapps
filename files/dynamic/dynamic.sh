@@ -52,6 +52,13 @@ elif (echo "$arch" | grep -qi "arm64"); then
   cp -rf $tmp_path/Libs/lib64/* /system/lib64
 fi
 
+# Photos
+if (echo "$arch" | grep -qi "armeabi"); then
+  cp -rf $tmp_path/Photos/arm/* /system
+elif (echo "$arch" | grep -qi "arm64"); then
+  cp -rf $tmp_path/Photos/arm64/* /system
+fi
+
 # PrebuiltBugle
 if (echo "$build_char" | grep -qiv "tablet"); then
   if (echo "$arch" | grep -qi "armeabi"); then

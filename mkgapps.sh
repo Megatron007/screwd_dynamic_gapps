@@ -27,6 +27,8 @@ APPDIRS="dynamic/FaceLock/arm/app/FaceLock
          dynamic/GoogleCamera/arm64/app/GoogleCamera
          dynamic/Hangouts/arm/app/Hangouts
          dynamic/Hangouts/arm64/app/Hangouts
+         dynamic/Photos/arm/app/Photos
+         dynamic/Photos/arm64/app/Photos
          dynamic/PrebuiltBugle/arm/app/PrebuiltBugle
          dynamic/PrebuiltBugle/arm64/app/PrebuiltBugle
          dynamic/PrebuiltGmsCore/arm/priv-app/PrebuiltGmsCore
@@ -40,7 +42,6 @@ APPDIRS="dynamic/FaceLock/arm/app/FaceLock
          system/app/ChromeBookmarksSyncAdapter
          system/app/GoogleContactsSyncAdapter
          system/app/GoogleTTS
-         system/app/Photos
          system/app/PrebuiltDeskClockGoogle
          system/app/talkback
          system/priv-app/GoogleBackupTransport
