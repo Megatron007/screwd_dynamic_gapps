@@ -23,7 +23,7 @@ ui_print() {
 }
 
 ui_print "*****************************"
-ui_print "** PureNexus Dynamic GApps **"
+ui_print "**  Screw'd Dynamic GApps  **"
 ui_print "*****************************"
 
 is_mounted() {

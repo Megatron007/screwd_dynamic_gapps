@@ -13,13 +13,14 @@
 # GNU General Public License for more details.
 
 # Pretty ascii art
-echo ".+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+";
-echo ".|P|.|u|.|r|.|e|.|N|.|e|.|x|.|u|.|s|";
-echo ".+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+.+-+";
-echo ".|D|.|y|.|n|.|a|.|m|.|i|.|c|........";
-echo ".+-+.+-+.+-+.+-+.+-+.+-+.+-+........";
-echo ".|G|.|A|.|p|.|p|.|s|................";
-echo ".+-+.+-+.+-+.+-+.+-+................";
+echo "(******************************************)";
+echo "(                                   /\ .___)";
+echo "(  ______ ___________   ______  _  _)/_| _/)";
+echo "( /  ___// ___\_  __ \_/ __ \ \/ \/ / __ | )";
+echo "( \___  \  \___|  | \/\  ___/\     / /_/ | )";
+echo "(/____  >\___  >__|    \___  >\/\_/\____ | )";
+echo "(     \/     \/            \/           \/ )";
+echo "(******************************************)";
 
 # Define paths && variables
 APPDIRS="dynamic/FaceLock/arm/app/FaceLock
@@ -29,8 +30,6 @@ APPDIRS="dynamic/FaceLock/arm/app/FaceLock
          dynamic/Hangouts/arm64/app/Hangouts
          dynamic/Photos/arm/app/Photos
          dynamic/Photos/arm64/app/Photos
-         dynamic/PrebuiltBugle/arm/app/PrebuiltBugle
-         dynamic/PrebuiltBugle/arm64/app/PrebuiltBugle
          dynamic/PrebuiltGmsCore/arm/priv-app/PrebuiltGmsCore
          dynamic/PrebuiltGmsCore/arm64/priv-app/PrebuiltGmsCore
          dynamic/SetupWizard/phone/priv-app/SetupWizard
@@ -38,11 +37,9 @@ APPDIRS="dynamic/FaceLock/arm/app/FaceLock
          dynamic/Velvet/arm/priv-app/Velvet
          dynamic/Velvet/arm64/priv-app/Velvet
          system/app/CalendarGooglePrebuilt
-         system/app/Chrome
          system/app/ChromeBookmarksSyncAdapter
          system/app/GoogleContactsSyncAdapter
          system/app/GoogleTTS
-         system/app/PrebuiltDeskClockGoogle
          system/app/talkback
          system/priv-app/GoogleBackupTransport
          system/priv-app/GoogleFeedback
@@ -55,7 +52,7 @@ APPDIRS="dynamic/FaceLock/arm/app/FaceLock
 TOOLSDIR=$(realpath .)/tools
 GAPPSDIR=$(realpath .)/files
 FINALDIR=$(realpath .)/out
-ZIPNAMETITLE=PureNexus_Dynamic_GApps
+ZIPNAMETITLE=Screwd_Dynamic_GApps
 ZIPNAMEVERSION=6.x.x
 ZIPNAMEDATE=$(date +%-m-%-e-%-y)
 ZIPNAME="$ZIPNAMETITLE"_"$ZIPNAMEVERSION"_"$ZIPNAMEDATE".zip

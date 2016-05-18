@@ -1,5 +1,5 @@
-#PureNexus Dynamic Gapps#
-#Based off Banks Gapps#
+#Screw'd Dynamic Gapps#
+#Based off Banks Gapps & Pure Nexus Gapps#
 
 **HOW TO USE:**
 
